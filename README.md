@@ -1,0 +1,1 @@
+# Predictor-Defectos-Regresion-Logistica
