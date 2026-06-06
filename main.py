@@ -6,12 +6,12 @@ print("\n[INFO] Iniciando Sistema de Predicción de QA (NASA Dataset)...")
 
 try:
     # Intenta leer el dataset real si ya lo tienes en la carpeta
-    df = pd.read_csv('nasa_defects.csv')
-    print("[INFO] Dataset real 'nasa_defects.csv' cargado exitosamente.")
+    df = pd.read_csv('SoftwareDefectDataset.csv')
+    print("[INFO] Dataset real 'SoftwareDefectDataset.csv' cargado exitosamente.")
 except FileNotFoundError:
     # Sistema de respaldo: Genera datos sintéticos estructuralmente idénticos
     # para que puedas probar el código antes de descargar el CSV oficial.
-    print("[WARN] No se encontró 'nasa_defects.csv'. Generando datos de simulación para la demo...")
+    print("[WARN] No se encontró 'SoftwareDefectDataset.csv'. Generando datos de simulación para la demo...")
     np.random.seed(42)
     datos = {
         'LOC': np.random.randint(10, 1500, 300),     # Líneas de código
