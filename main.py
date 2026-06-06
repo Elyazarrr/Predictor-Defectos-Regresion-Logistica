@@ -2,9 +2,6 @@ import pandas as pd
 import numpy as np
 from modelo_matematico import RegresionLogisticaDesdeCero
 
-# =====================================================================
-# FASE 1: INGESTA Y PREPARACIÓN DE DATOS (DATA ENGINEERING)
-# =====================================================================
 print("\n[INFO] Iniciando Sistema de Predicción de QA (NASA Dataset)...")
 
 try:
@@ -31,10 +28,6 @@ columnas_entrada = ['LOC', 'CYCLO', 'VOLUME']
 X = df[columnas_entrada].values
 y = df['DEFECT_LABEL'].values
 
-# =====================================================================
-# FASE 2: PREPROCESAMIENTO MATEMÁTICO (SIN LIBRERÍAS MÁGICAS)
-# =====================================================================
-# Estandarización (Z-Score): (X - Media) / Desviación Estándar.
 # OBLIGATORIO: Si no escalamos los datos, el Descenso del Gradiente colapsa
 # porque la métrica VOLUME (miles) aplastaría a CYCLO (decenas).
 def estandarizar(matriz):
@@ -44,7 +37,7 @@ def estandarizar(matriz):
 
 X_escalado = estandarizar(X)
 
-# División del Dataset: 80% Entrenamiento / 20% Prueba (Validación cruzada)
+# División del Dataset: 80% Entrenamiento / 20% Prueba 
 indices = np.arange(X_escalado.shape[0])
 np.random.shuffle(indices) # Mezclar los datos aleatoriamente
 corte = int(0.8 * X_escalado.shape[0])
@@ -54,14 +47,11 @@ y_train, y_test = y[indices[:corte]], y[indices[corte:]]
 
 print(f"[INFO] Datos divididos: {X_train.shape[0]} para entrenamiento, {X_test.shape[0]} para validación.")
 
-# =====================================================================
-# FASE 3: ENTRENAMIENTO DEL MODELO Y PREDICCIÓN
-# =====================================================================
 print("\n[INFO] Inicializando Descenso del Gradiente...")
 # Instanciamos nuestra clase matemática creada desde cero
 modelo = RegresionLogisticaDesdeCero(tasa_aprendizaje=0.1, iteraciones=2000)
 
-# El motor matemático comienza a ajustar los pesos (betas)
+# El motor matemático comienza a ajustar los pesos 
 modelo.entrenar(X_train, y_train)
 print("[INFO] Entrenamiento matemático completado.")
 
@@ -78,9 +68,6 @@ print("==========================================================")
 print(f"Precisión del Modelo: {precision:.2f}% de aciertos.")
 print("==========================================================")
 
-# =====================================================================
-# FASE 4: SIMULACIÓN EN VIVO (Para tu video demostrativo)
-# =====================================================================
 print("\n--- TEST EN VIVO: Evaluando un nuevo módulo de código ---")
 # Supongamos que acabamos de escribir un código muy denso (LOC=1200, CYCLO=45, VOLUME=7000)
 nuevo_modulo = np.array([[1200, 45, 7000]])
